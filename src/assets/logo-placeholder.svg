@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 40" fill="none">
+  <rect width="120" height="40" rx="4" fill="#0A0A0A"/>
+  <text x="10" y="28" font-family="Arial, sans-serif" font-weight="bold" font-size="20" fill="#D4AF37">BGR</text>
+  <text x="62" y="28" font-family="Arial, sans-serif" font-weight="300" font-size="20" fill="white">DEV</text>
+</svg>
