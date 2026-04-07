@@ -38,15 +38,13 @@ export function CTA() {
            whileInView={{ opacity: 1, y: 0 }}
            viewport={{ once: true }}
            transition={{ delay: 0.4 }}
-           className="flex flex-col sm:flex-row items-center justify-center gap-6"
+           className="flex justify-center"
         >
-          <button className="px-12 py-6 bg-gradient-to-r from-[#D4AF37] to-[#996515] rounded-full text-black font-bold text-xl hover:shadow-[0_0_50px_-10px_rgba(212,175,55,0.6)] transition-all duration-300 transform hover:-translate-y-2 flex items-center gap-4 group">
+          <button 
+            onClick={() => window.dispatchEvent(new Event('openContactModal'))}
+            className="px-14 py-7 bg-gradient-to-r from-[#D4AF37] to-[#996515] rounded-full text-black font-bold text-2xl hover:shadow-[0_0_60px_-10px_rgba(212,175,55,0.6)] transition-all duration-300 transform hover:-translate-y-2 flex items-center gap-4 group">
             Start Project
-            <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform" />
-          </button>
-          
-          <button className="px-12 py-6 bg-transparent border border-white/10 hover:border-[#D4AF37]/50 rounded-full text-white font-medium text-xl backdrop-blur-md hover:bg-white/5 transition-all duration-300">
-            Contact Sales
+            <ArrowRight className="w-8 h-8 group-hover:translate-x-2 transition-transform" />
           </button>
         </motion.div>
       </div>

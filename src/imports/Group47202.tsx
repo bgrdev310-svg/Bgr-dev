@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import svgPaths from "./svg-cscsarvg7n";
-import imgLogoModerneEtElegantBgrDev1 from '../assets/logo-placeholder.svg';
+import imgLogoModerneEtElegantBgrDev1 from '../assets/logo.png';
 import imgSocial1 from '../assets/social-instagram.svg';
 import imgWhatsapp1 from '../assets/social-whatsapp.svg';
 import imgGmail1 from '../assets/social-gmail.svg';

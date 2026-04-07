@@ -60,7 +60,7 @@ export function Hero() {
         </div>
       </motion.div>
 
-      <div className="max-w-6xl mx-auto text-center z-10 pt-[clamp(2rem,8vh,5rem)] relative">
+      <div className="max-w-6xl mx-auto text-center z-10 pt-[clamp(5rem,12vh,8rem)] relative">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -113,16 +113,13 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.8 }}
-          className="mt-[clamp(1.5rem,6vh,3rem)] flex flex-col sm:flex-row items-center justify-center gap-[clamp(0.5rem,2vh,1.5rem)]"
+          className="mt-[clamp(1.5rem,6vh,3rem)] flex justify-center"
         >
-          <button className="relative px-[clamp(1.5rem,5vw,2.5rem)] py-[clamp(0.75rem,2.5vh,1.25rem)] bg-gradient-to-r from-[#D4AF37] to-[#996515] rounded-full text-black font-bold text-[clamp(1rem,min(2.5vw,2vh),1.125rem)] hover:shadow-[0_0_50px_-10px_rgba(212,175,55,0.5)] transition-all duration-300 transform hover:-translate-y-1 overflow-hidden group">
-            <span className="relative z-10">Schedule a Demo</span>
+          <button 
+            onClick={() => window.dispatchEvent(new Event('openContactModal'))}
+            className="relative px-[clamp(2rem,6vw,3rem)] py-[clamp(1rem,3vh,1.5rem)] bg-gradient-to-r from-[#D4AF37] to-[#996515] rounded-full text-black font-bold text-[clamp(1.1rem,min(2.5vw,2vh),1.25rem)] hover:shadow-[0_0_50px_-10px_rgba(212,175,55,0.5)] transition-all duration-300 transform hover:-translate-y-1 overflow-hidden group">
+            <span className="relative z-10">Start With Us</span>
             <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-          </button>
-
-          <button className="px-[clamp(1.5rem,5vw,2.5rem)] py-[clamp(0.75rem,2.5vh,1.25rem)] bg-white/5 border border-white/10 hover:border-[#D4AF37]/50 rounded-full text-white font-medium text-[clamp(1rem,min(2.5vw,2vh),1.125rem)] backdrop-blur-md hover:bg-white/10 transition-all duration-300 flex items-center gap-3 group">
-            View Our Work
-            <ArrowRight className="w-5 h-5 text-[#D4AF37] group-hover:translate-x-1 transition-transform" />
           </button>
         </motion.div>
       </div>
@@ -135,13 +132,19 @@ export function Hero() {
         className="absolute left-6 bottom-10 hidden lg:flex flex-col gap-4 z-20"
       >
         <div className="w-[1px] h-20 bg-gradient-to-b from-transparent via-[#D4AF37]/50 to-transparent mx-auto mb-4" />
-        {[imgSocial1, imgWhatsapp1, imgGmail1].map((icon, i) => (
+        {[
+          { icon: imgSocial1, href: 'https://www.instagram.com/bgr.dev/' },
+          { icon: imgWhatsapp1, href: 'https://wa.me/213659308807' },
+          { icon: imgGmail1, href: 'mailto:bgrdev310@gmail.com' }
+        ].map((item, i) => (
           <a
             key={i}
-            href="#"
+            href={item.href}
+            target={item.href.startsWith('mailto') ? undefined : "_blank"}
+            rel="noopener noreferrer"
             className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-[#D4AF37] hover:border-[#D4AF37] transition-all duration-300 group"
           >
-            <img src={icon} alt="Social" className="w-5 h-5 opacity-60 group-hover:opacity-100 group-hover:invert transition-all" />
+            <img src={item.icon} alt="Social" className="w-5 h-5 opacity-60 group-hover:opacity-100 group-hover:invert transition-all" />
           </a>
         ))}
       </motion.div>

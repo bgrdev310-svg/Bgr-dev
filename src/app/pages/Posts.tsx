@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import { Link } from 'react-router';
 import { ArrowUpRight, Calendar, ArrowLeft } from 'lucide-react';
 import { instagramPosts } from '../data/posts';
+import { SEO } from '../components/SEO';
 
 export function Posts() {
   useEffect(() => {
@@ -11,6 +12,12 @@ export function Posts() {
 
   return (
     <main className="min-h-screen bg-[#0B0B0D] pt-32 pb-20 px-6 font-['Inter']">
+      <SEO
+        title="Insights & Editorials — Design Blog"
+        description="Dive into BGR Dev's premium masterclasses on UI/UX design, luxury branding, typography, color psychology, and digital strategy for high-end brands."
+        canonical="/posts"
+        keywords="UI UX design insights, luxury branding tips, web design blog, typography masterclass, color psychology, BGR Dev blog"
+      />
       <div className="max-w-7xl mx-auto">
         <Link 
           to="/" 

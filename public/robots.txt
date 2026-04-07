@@ -1,0 +1,10 @@
+# robots.txt for BGR Dev
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://bgrdev.com/sitemap.xml
+
+# Disallow admin/internal paths
+Disallow: /api/
+Disallow: /_assets/

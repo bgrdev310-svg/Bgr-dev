@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import { ArrowUpRight } from 'lucide-react';
 import { useNavigate } from 'react-router';
 import { projects } from '../data/projects';
+import { SEO } from '../components/SEO';
 
 export function Works() {
   const navigate = useNavigate();
@@ -13,6 +14,12 @@ export function Works() {
 
   return (
     <div className="min-h-screen pt-[120px] pb-32 px-6 bg-[#0B0B0D]">
+      <SEO
+        title="Our Works — Portfolio"
+        description="Explore BGR Dev's portfolio of premium web design projects. From luxury e-commerce to high-end real estate platforms, see how we craft conversion-focused digital experiences."
+        canonical="/works"
+        keywords="web design portfolio, premium websites, UI UX case studies, luxury web development projects, BGR Dev works"
+      />
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router';
 import { motion, AnimatePresence } from 'motion/react';
 import { instagramPosts } from '../data/posts';
 import { ArrowLeft, Clock, Calendar, ArrowUpRight, Share2, Bookmark, Heart, MessageCircle, ChevronLeft, ChevronRight, LayoutGrid, Layers } from 'lucide-react';
+import { SEO } from '../components/SEO';
 
 export function PostDetail() {
   const { id } = useParams();
@@ -28,6 +29,7 @@ export function PostDetail() {
   if (!post) {
     return (
       <div className="min-h-screen bg-[#0B0B0D] flex items-center justify-center text-white">
+        <SEO title="Post Not Found" description="The post you are looking for does not exist." noIndex={true} />
         <div className="text-center">
           <h1 className="text-3xl font-bold mb-4">Post not found</h1>
           <Link to="/" className="text-[#D4AF37] hover:underline flex items-center gap-2 justify-center">
@@ -38,8 +40,31 @@ export function PostDetail() {
     );
   }
 
+  const articleData = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": post.title,
+    "description": post.excerpt,
+    "datePublished": post.date,
+    "author": { "@type": "Organization", "name": "BGR Dev", "url": "https://bgrdev.com" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "BGR Dev",
+      "logo": { "@type": "ImageObject", "url": "https://bgrdev.com/logo.png" }
+    },
+    "mainEntityOfPage": { "@type": "WebPage", "@id": `https://bgrdev.com/post/${post.id}` }
+  };
+
   return (
     <div className="bg-[#0B0B0D] min-h-screen text-white relative font-['Inter'] pb-32 overflow-hidden">
+      <SEO
+        title={post.title}
+        description={post.excerpt}
+        canonical={`/post/${post.id}`}
+        ogType="article"
+        keywords={`${post.title}, ${post.category}, UI UX design, luxury branding, BGR Dev insights`}
+        structuredData={articleData}
+      />
       {/* Intro Section */}
       <section className="pt-32 pb-8 px-6 max-w-7xl mx-auto">
         <Link 
@@ -202,7 +227,7 @@ export function PostDetail() {
                       >
                         <img 
                           src={slide} 
-                          alt={`Slide ${index + 1}`} 
+                          alt={`${post.title} — Slide ${index + 1} of ${post.slides.length}`} 
                           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.02] pointer-events-none"
                           draggable="false"
                         />

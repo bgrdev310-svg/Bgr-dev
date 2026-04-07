@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Menu, X, ArrowRight } from 'lucide-react';
-import imgLogo from '../../assets/logo-placeholder.svg';
+import imgLogo from '../../assets/logo.png';
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -72,7 +72,7 @@ export function Navbar() {
         className={`fixed top-6 left-0 right-0 z-50 flex justify-center px-4 transition-all duration-500`}
       >
         <div className={`
-          relative flex items-center justify-between px-6 py-3 rounded-full border 
+          relative flex items-center justify-between px-6 py-2 rounded-full border 
           transition-all duration-500 backdrop-blur-xl
           ${scrolled 
             ? 'w-full max-w-5xl bg-black/60 border-white/10 shadow-[0_0_20px_rgba(0,0,0,0.5)]' 
@@ -80,7 +80,7 @@ export function Navbar() {
         `}>
           {/* Logo */}
           <a href="#" className="flex items-center gap-2 relative z-10 group">
-             <img src={imgLogo} alt="Bgr Dev Logo" className="h-8 w-auto object-contain transition-transform group-hover:scale-105" />
+             <img src={imgLogo} alt="Bgr Dev Logo" className="h-10 w-auto object-contain transition-transform group-hover:scale-105" />
           </a>
 
           {/* Desktop Nav */}
@@ -102,7 +102,9 @@ export function Navbar() {
 
           {/* CTA & Mobile Toggle */}
           <div className="flex items-center gap-4 relative z-10">
-            <button className="hidden md:flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold bg-white text-black hover:bg-[#D4AF37] hover:text-black transition-all duration-300 group overflow-hidden relative">
+            <button 
+              onClick={() => window.dispatchEvent(new Event('openContactModal'))}
+              className="hidden md:flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold bg-white text-black hover:bg-[#D4AF37] hover:text-black transition-all duration-300 group overflow-hidden relative">
               <span className="relative z-10 flex items-center gap-2">
                 Start Project
                 <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
@@ -148,6 +150,10 @@ export function Navbar() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  window.dispatchEvent(new Event('openContactModal'));
+                }}
                 className="mt-8 px-8 py-4 rounded-full text-lg font-semibold bg-[#D4AF37] text-black w-full max-w-xs"
               >
                 Start Project

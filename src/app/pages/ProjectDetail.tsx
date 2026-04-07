@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router';
 import { motion } from 'motion/react';
 import { ArrowLeft, ArrowUpRight } from 'lucide-react';
 import { projects } from '../data/projects';
+import { SEO } from '../components/SEO';
 
 export function ProjectDetail() {
   const { id } = useParams();
@@ -16,6 +17,7 @@ export function ProjectDetail() {
   if (!project) {
     return (
       <div className="min-h-screen flex items-center justify-center text-white">
+        <SEO title="Project Not Found" description="The project you are looking for does not exist." noIndex={true} />
         <div className="text-center">
           <h1 className="text-4xl font-bold mb-4">Project Not Found</h1>
           <button onClick={() => navigate('/')} className="text-[#D4AF37] hover:underline flex items-center justify-center gap-2">
@@ -26,8 +28,26 @@ export function ProjectDetail() {
     );
   }
 
+  const breadcrumbData = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://bgrdev.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Works", "item": "https://bgrdev.com/works" },
+      { "@type": "ListItem", "position": 3, "name": project.title, "item": `https://bgrdev.com/project/${project.id}` }
+    ]
+  };
+
   return (
     <article className="min-h-screen pt-[120px] pb-32 px-6">
+      <SEO
+        title={`${project.title} — ${project.category} Case Study`}
+        description={project.description}
+        canonical={`/project/${project.id}`}
+        ogType="article"
+        keywords={`${project.title}, ${project.category}, ${project.services.join(', ')}, BGR Dev project`}
+        structuredData={breadcrumbData}
+      />
       <div className="max-w-7xl mx-auto">
         {/* Header Section */}
         <motion.div 

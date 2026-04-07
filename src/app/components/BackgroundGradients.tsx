@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { imgGroup46890 } from '../../imports/svg-thtve';
 import svgPaths from '../../imports/svg-cscsarvg7n';
 
-export function BackgroundGradients() {
+export const BackgroundGradients = memo(function BackgroundGradients() {
   return (
     <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none bg-[#0B0B0D]">
       {/* Main dark background is set on the container */}
@@ -83,4 +83,4 @@ export function BackgroundGradients() {
       </div>
     </div>
   );
-}
+});
